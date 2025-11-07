@@ -7,20 +7,6 @@ import { useI18n } from './i18n'
 function App() {
   const { translation } = useI18n()
   const { cv, layout } = translation
-  const {
-    metadata,
-    contact,
-    about,
-    experience,
-    tournaments,
-    contributions,
-    production,
-    tools,
-    training,
-    links,
-    shortVersion,
-    footer,
-  } = cv
 
   return (
     <div className="app">
@@ -42,32 +28,30 @@ function App() {
               <figure className="page-hero__media">
                 <img
                   src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=320&q=80"
-                  alt={metadata.name}
+                  alt={cv.metadata.name}
                 />
               </figure>
               <div className="page-hero__intro">
-                <span className="page-hero__eyebrow">{metadata.headline}</span>
+                <span className="page-hero__eyebrow">{cv.metadata.headline}</span>
                 <h1 className="page-hero__title" id="cv-title">
-                  {metadata.name}
+                  {cv.metadata.name}
                 </h1>
-                {metadata.details.length > 0 && (
-                  <ul className="page-hero__details" aria-label={metadata.detailsLabel}>
-                    {metadata.details.map((detail) => (
-                      <li key={detail.label}>
-                        <span className="page-hero__details-label">{detail.label}</span>
-                        <span>{detail.value}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <ul className="page-hero__details" aria-label={cv.metadata.detailsLabel}>
+                  {cv.metadata.details.map((detail) => (
+                    <li key={detail.label}>
+                      <span className="page-hero__details-label">{detail.label}</span>
+                      <span>{detail.value}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <aside className="page-hero__contacts" aria-labelledby="contact-title">
               <h2 className="section-title" id="contact-title">
-                {contact.title}
+                {cv.contact.title}
               </h2>
               <ul className="contact-list">
-                {contact.items.map((item) => (
+                {cv.contact.items.map((item) => (
                   <li key={item.label} className="contact-list__item">
                     <span className="contact-list__icon material-symbols-rounded" aria-hidden="true">
                       {item.icon}
@@ -91,140 +75,80 @@ function App() {
         </header>
 
         <main className="page-content" id="main-content">
-          <Section id="about" title={about.title} icon="person">
-            <div className="section-text">
-              {about.intro.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="feature-grid">
-              <div className="feature-grid__main">
-                <h3 className="section-subtitle">{about.responsibilitiesTitle}</h3>
-                <ul className="checklist">
-                  {about.responsibilities.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <aside className="feature-highlight">
-                <span className="feature-highlight__icon material-symbols-rounded" aria-hidden="true">
-                  stars
-                </span>
-                <p>{about.highlight}</p>
-              </aside>
-            </div>
-            <p className="section-note">{about.locationNote}</p>
+          <Section id="summary" title={cv.summary.title} icon="auto_stories">
+            <p>{cv.summary.description}</p>
           </Section>
-
-          <Section id="experience" title={experience.title} icon="stadia_controller">
+          <Section id="experience" title={cv.experience.title} icon="work">
             <div className="experience-list">
-              {experience.items.map((item) => (
+              {cv.experience.items.map((item) => (
                 <article key={`${item.company}-${item.role}`} className="experience-card">
                   <header className="experience-card__header">
                     <p className="experience-card__company">{item.company}</p>
                     <h3 className="experience-card__title">{item.role}</h3>
                     <p className="experience-card__meta">
                       <span>{item.period}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{item.format}</span>
+                      <span aria-hidden="true"> · </span>
+                      <span>{item.location}</span>
                     </p>
                   </header>
-                  <h4 className="experience-card__subtitle">{item.responsibilitiesTitle}</h4>
+                  <p className="experience-card__description">{item.description}</p>
                   <ul className="experience-card__achievements">
-                    {item.responsibilities.map((responsibility) => (
-                      <li key={responsibility}>{responsibility}</li>
+                    {item.achievements.map((achievement) => (
+                      <li key={achievement}>{achievement}</li>
                     ))}
                   </ul>
                 </article>
               ))}
             </div>
           </Section>
-
-          <Section id="tournaments" title={tournaments.title} icon="emoji_events">
-            <p className="section-intro">{tournaments.intro}</p>
-            <div className="tournament-grid">
-              {tournaments.categories.map((category) => (
-                <section key={category.title} className="tournament-card" aria-label={category.title}>
-                  <h3 className="section-subtitle">{category.title}</h3>
-                  <ul className="tournament-list">
-                    {category.items.map((event) => (
-                      <li key={event}>{event}</li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
-          </Section>
-
-          <Section id="contributions" title={contributions.title} icon="hub">
-            <ul className="checklist checklist--dense">
-              {contributions.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section id="production" title={production.title} icon="precision_manufacturing">
-            <p className="section-intro">{production.intro}</p>
-            <ul className="bullet-list">
-              {production.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="section-note">{production.closing}</p>
-          </Section>
-
-          <Section id="tools" title={tools.title} icon="construction">
-            <div className="tool-grid">
-              {tools.groups.map((group) => (
-                <section key={group.title} className="tool-grid__group" aria-label={group.title}>
-                  <h3 className="tool-grid__title">{group.title}</h3>
-                  <ul className="tool-grid__list">
-                    {group.items.map((tool) => (
-                      <li key={tool}>{tool}</li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
-          </Section>
-
-          <Section id="training" title={training.title} icon="diversity_3">
-            <p className="section-intro">{training.intro}</p>
-            <ul className="checklist">
-              {training.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section id="links" title={links.title} icon="link">
-            <ul className="links-list">
-              {links.items.map((item) => (
-                <li key={item.value} className="links-list__item">
-                  <span className="links-list__label">{item.label}</span>
-                  <a
-                    href={item.href ?? item.value}
-                    className="links-list__link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.value}
-                  </a>
+          <Section id="education" title={cv.education.title} icon="school">
+            <ul className="education-list">
+              {cv.education.items.map((item) => (
+                <li key={`${item.institution}-${item.period}`} className="education-list__item">
+                  <div className="education-list__heading">
+                    <h3 className="education-list__degree">{item.degree}</h3>
+                    <p className="education-list__institution">{item.institution}</p>
+                  </div>
+                  <p className="education-list__meta">
+                    <span>{item.period}</span>
+                    <span aria-hidden="true"> · </span>
+                    <span>{item.location}</span>
+                  </p>
                 </li>
               ))}
             </ul>
           </Section>
-
-          <Section id="short-version" title={shortVersion.title} icon="summarize">
-            <div className="short-version">
-              <p>{shortVersion.description}</p>
+          <Section id="skills" title={cv.skills.title} icon="psychology">
+            <div className="skills-grid">
+              {cv.skills.groups.map((group) => (
+                <section key={group.title} aria-label={group.title} className="skills-grid__group">
+                  <h3 className="skills-grid__title">{group.title}</h3>
+                  <ul className="skills-grid__list">
+                    {group.items.map((skill) => (
+                      <li key={skill}>{skill}</li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
             </div>
           </Section>
         </main>
 
         <footer className="site-footer">
-          <p>{footer.note}</p>
+          <p>{cv.footer.note}</p>
+          {cv.footer.pdfLink && (
+            <a
+              className="site-footer__pdf-link"
+              href={cv.footer.pdfLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="material-symbols-rounded" aria-hidden="true">
+                picture_as_pdf
+              </span>
+              <span>{cv.footer.pdfLink.label}</span>
+            </a>
+          )}
         </footer>
       </div>
     </div>
