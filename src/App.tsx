@@ -1,6 +1,7 @@
 import type { MouseEvent } from 'react'
 import './App.css'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
+import { ThemeSwitcher } from './components/ThemeSwitcher'
 import { Section } from './components/Section'
 import { useI18n } from './i18n'
 import { usePdfExport } from './features/pdfExport/usePdfExport'
@@ -29,7 +30,7 @@ function App() {
         <header className="page-header" aria-labelledby="cv-title">
           <div className="page-header__bar" role="presentation">
             <div className="page-header__spacer" aria-hidden="true" />
-            <div className="page-header__actions">
+            <div className="page-header__actions" role="group" aria-label={layout.headerControlsLabel}>
               <a
                 className="pdf-link"
                 href={pdfUrl ?? '#'}
@@ -40,6 +41,7 @@ function App() {
               >
                 {actions.exportPdf}
               </a>
+              <ThemeSwitcher />
               <LanguageSwitcher />
             </div>
           </div>

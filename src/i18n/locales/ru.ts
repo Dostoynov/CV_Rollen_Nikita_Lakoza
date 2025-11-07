@@ -8,7 +8,12 @@ const ru: Translation = {
   layout: {
     skipToMain: 'Перейти к основному содержимому',
     languageSwitcherLabel: 'Язык',
+    themeSwitcherToggle: 'Переключить тему',
+    themeOptionSystem: 'Система',
+    themeOptionLight: 'Светлая',
+    themeOptionDark: 'Тёмная',
     pdfControlsLabel: 'Управление PDF',
+    headerControlsLabel: 'Элементы управления в шапке',
   },
   actions: {
     exportPdf: 'Экспорт в PDF',

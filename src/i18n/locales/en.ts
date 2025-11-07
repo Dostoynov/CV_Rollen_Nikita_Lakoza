@@ -6,7 +6,12 @@ const en = {
   layout: {
     skipToMain: 'Skip to main content',
     languageSwitcherLabel: 'Language',
+    themeSwitcherToggle: 'Toggle theme',
+    themeOptionSystem: 'System',
+    themeOptionLight: 'Light',
+    themeOptionDark: 'Dark',
     pdfControlsLabel: 'PDF controls',
+    headerControlsLabel: 'Header controls',
   },
   actions: {
     exportPdf: 'Export PDF',

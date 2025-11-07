@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap');
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-family: 'Inter', 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', system-ui, -apple-system,
     sans-serif;
   font-size: 16px;
@@ -11,17 +11,91 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --page-background: #edf1ff;
+  --surface: #ffffff;
+  --surface-card: rgba(255, 255, 255, 0.85);
+  --surface-layer: rgba(243, 246, 255, 0.85);
+  --surface-panel: rgba(255, 255, 255, 0.82);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent: #5145ff;
+  --accent-contrast: #ffffff;
+  --border-strong: rgba(15, 23, 42, 0.12);
+  --gradient-start: rgba(224, 231, 255, 0.88);
+  --gradient-end: rgba(203, 213, 255, 0.9);
+  --pill-background: rgba(79, 70, 229, 0.12);
+}
+
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page-background: #05070f;
+    --surface: #05070f;
+    --surface-card: rgba(16, 22, 42, 0.72);
+    --surface-layer: rgba(16, 22, 42, 0.7);
+    --surface-panel: rgba(18, 24, 48, 0.65);
+    --text-primary: #f5f7ff;
+    --text-secondary: #cbd2e8;
+    --text-muted: #9499bb;
+    --accent: #9c87ff;
+    --accent-contrast: #05060f;
+    --border-strong: rgba(153, 162, 205, 0.35);
+    --gradient-start: rgba(24, 30, 52, 0.85);
+    --gradient-end: rgba(8, 11, 24, 0.9);
+    --pill-background: rgba(148, 163, 184, 0.14);
+  }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --page-background: #edf1ff;
+  --surface: #ffffff;
+  --surface-card: rgba(255, 255, 255, 0.85);
+  --surface-layer: rgba(243, 246, 255, 0.85);
+  --surface-panel: rgba(255, 255, 255, 0.82);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent: #5145ff;
+  --accent-contrast: #ffffff;
+  --border-strong: rgba(15, 23, 42, 0.12);
+  --gradient-start: rgba(224, 231, 255, 0.88);
+  --gradient-end: rgba(203, 213, 255, 0.9);
+  --pill-background: rgba(79, 70, 229, 0.12);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
   --page-background: #05070f;
-  --surface: var(--page-background);
-  --surface-card: rgba(18, 24, 48, 0.92);
-  --surface-layer: rgba(16, 22, 42, 0.88);
-  --surface-panel: rgba(22, 29, 54, 0.9);
+  --surface: #05070f;
+  --surface-card: rgba(16, 22, 42, 0.72);
+  --surface-layer: rgba(16, 22, 42, 0.7);
+  --surface-panel: rgba(18, 24, 48, 0.65);
   --text-primary: #f5f7ff;
   --text-secondary: #cbd2e8;
   --text-muted: #9499bb;
   --accent: #9c87ff;
   --accent-contrast: #05060f;
   --border-strong: rgba(153, 162, 205, 0.35);
+  --gradient-start: rgba(24, 30, 52, 0.85);
+  --gradient-end: rgba(8, 11, 24, 0.9);
+  --pill-background: rgba(148, 163, 184, 0.14);
 }
 
 *,
