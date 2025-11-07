@@ -42,21 +42,25 @@ const en = {
           label: 'Email',
           value: 'hello@nikitalakoza.dev',
           href: 'mailto:hello@nikitalakoza.dev',
+          icon: 'alternate_email',
         },
         {
           label: 'Phone',
           value: '+49 000 0000000',
           href: 'tel:+490000000000',
+          icon: 'call',
         },
         {
           label: 'Portfolio',
           value: 'nikitalakoza.dev',
           href: 'https://nikitalakoza.dev',
+          icon: 'language',
         },
         {
           label: 'LinkedIn',
           value: 'linkedin.com/in/nikitalakoza',
           href: 'https://www.linkedin.com/in/nikitalakoza',
+          icon: 'handshake',
         },
       ],
     },
@@ -126,6 +130,10 @@ const en = {
     },
     footer: {
       note: 'This template is ready for localisation, PDF export integration, and future specialisations.',
+      pdfLink: {
+        label: 'Download English PDF',
+        href: '/pdf/en/nikita-lakoza.pdf',
+      },
     },
   },
 }

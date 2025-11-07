@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap');
 
 :root {
   color-scheme: light;
-  font-family: 'Inter', 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', system-ui, -apple-system,
-    sans-serif;
+  font-family: 'Manrope', 'Inter', 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', system-ui,
+    -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.7;
   font-weight: 400;

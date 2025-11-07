@@ -44,21 +44,25 @@ const ru: Translation = {
           label: 'Email',
           value: 'hello@nikitalakoza.dev',
           href: 'mailto:hello@nikitalakoza.dev',
+          icon: 'alternate_email',
         },
         {
           label: 'Телефон',
           value: '+49 000 0000000',
           href: 'tel:+490000000000',
+          icon: 'call',
         },
         {
           label: 'Портфолио',
           value: 'nikitalakoza.dev',
           href: 'https://nikitalakoza.dev',
+          icon: 'language',
         },
         {
           label: 'LinkedIn',
           value: 'linkedin.com/in/nikitalakoza',
           href: 'https://www.linkedin.com/in/nikitalakoza',
+          icon: 'handshake',
         },
       ],
     },
@@ -128,6 +132,10 @@ const ru: Translation = {
     },
     footer: {
       note: 'Этот шаблон готов к локализации, интеграции экспорта в PDF и будущим специализациям.',
+      pdfLink: {
+        label: 'Скачать PDF на русском',
+        href: '/pdf/ru/nikita-lakoza.pdf',
+      },
     },
   },
 }
