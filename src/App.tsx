@@ -1,25 +1,12 @@
-import type { MouseEvent } from 'react'
 import './App.css'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
 import { ThemeSwitcher } from './components/ThemeSwitcher'
 import { Section } from './components/Section'
 import { useI18n } from './i18n'
-import { usePdfExport } from './features/pdfExport/usePdfExport'
 
 function App() {
   const { translation } = useI18n()
-  const { exportToPdf, pdfUrl, isReady } = usePdfExport()
-
-  const { cv, actions, layout } = translation
-
-  const handlePdfClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (!pdfUrl) {
-      event.preventDefault()
-      if (isReady) {
-        exportToPdf()
-      }
-    }
-  }
+  const { cv, layout } = translation
 
   return (
     <div className="app">
@@ -31,16 +18,6 @@ function App() {
           <div className="page-header__bar" role="presentation">
             <div className="page-header__spacer" aria-hidden="true" />
             <div className="page-header__actions" role="group" aria-label={layout.headerControlsLabel}>
-              <a
-                className="pdf-link"
-                href={pdfUrl ?? '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handlePdfClick}
-                data-loading={!pdfUrl && !isReady}
-              >
-                {actions.exportPdf}
-              </a>
               <ThemeSwitcher />
               <LanguageSwitcher />
             </div>
@@ -67,11 +44,21 @@ function App() {
               </h2>
               <ul className="contact-list">
                 {cv.contact.items.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href} target="_blank" rel="noopener noreferrer">
-                      {item.label}
-                    </a>
-                    <span>{item.value}</span>
+                  <li key={item.label} className="contact-list__item">
+                    <span className="contact-list__icon material-symbols-rounded" aria-hidden="true">
+                      {item.icon}
+                    </span>
+                    <div className="contact-list__content">
+                      <span className="contact-list__label">{item.label}</span>
+                      <a
+                        className="contact-list__link"
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.value}
+                      </a>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -80,10 +67,10 @@ function App() {
         </header>
 
         <main className="page-content" id="main-content">
-          <Section id="summary" title={cv.summary.title}>
+          <Section id="summary" title={cv.summary.title} icon="auto_stories">
             <p>{cv.summary.description}</p>
           </Section>
-          <Section id="experience" title={cv.experience.title}>
+          <Section id="experience" title={cv.experience.title} icon="work">
             <div className="experience-list">
               {cv.experience.items.map((item) => (
                 <article key={`${item.company}-${item.role}`} className="experience-card">
@@ -106,7 +93,7 @@ function App() {
               ))}
             </div>
           </Section>
-          <Section id="education" title={cv.education.title}>
+          <Section id="education" title={cv.education.title} icon="school">
             <ul className="education-list">
               {cv.education.items.map((item) => (
                 <li key={`${item.institution}-${item.period}`} className="education-list__item">
@@ -123,7 +110,7 @@ function App() {
               ))}
             </ul>
           </Section>
-          <Section id="skills" title={cv.skills.title}>
+          <Section id="skills" title={cv.skills.title} icon="psychology">
             <div className="skills-grid">
               {cv.skills.groups.map((group) => (
                 <section key={group.title} aria-label={group.title} className="skills-grid__group">
@@ -141,6 +128,19 @@ function App() {
 
         <footer className="site-footer">
           <p>{cv.footer.note}</p>
+          {cv.footer.pdfLink && (
+            <a
+              className="site-footer__pdf-link"
+              href={cv.footer.pdfLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="material-symbols-rounded" aria-hidden="true">
+                picture_as_pdf
+              </span>
+              <span>{cv.footer.pdfLink.label}</span>
+            </a>
+          )}
         </footer>
       </div>
     </div>
