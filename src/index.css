@@ -1,37 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 :root {
-  color-scheme: light dark;
-  font-family: 'Inter', 'Roboto', 'Segoe UI', 'Helvetica Neue', system-ui, -apple-system,
+  color-scheme: dark;
+  font-family: 'Inter', 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', system-ui, -apple-system,
     sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --surface: #f7f9fc;
-  --surface-elevated: #ffffff;
-  --surface-muted: #eef2f8;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --accent: #2563eb;
-  --accent-contrast: #f8fafc;
-  --border-strong: rgba(15, 23, 42, 0.1);
-  --shadow-soft: 0 32px 80px -48px rgba(15, 23, 42, 0.55);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --surface: #050914;
-    --surface-elevated: #0f172a;
-    --surface-muted: #1e293b;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5f5;
-    --accent: #60a5fa;
-    --accent-contrast: #0b1120;
-    --border-strong: rgba(148, 163, 184, 0.24);
-    --shadow-soft: 0 32px 80px -48px rgba(2, 6, 23, 0.85);
-  }
+  --page-background: #05070f;
+  --surface: var(--page-background);
+  --surface-card: rgba(18, 24, 48, 0.92);
+  --surface-layer: rgba(16, 22, 42, 0.88);
+  --surface-panel: rgba(22, 29, 54, 0.9);
+  --text-primary: #f5f7ff;
+  --text-secondary: #cbd2e8;
+  --text-muted: #9499bb;
+  --accent: #9c87ff;
+  --accent-contrast: #05060f;
+  --border-strong: rgba(153, 162, 205, 0.35);
 }
 
 *,
@@ -43,7 +33,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--surface);
+  background: var(--page-background);
   color: var(--text-primary);
 }
 
@@ -53,6 +43,7 @@ body {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 a:hover,
@@ -76,7 +67,7 @@ a[aria-disabled='true'] {
 }
 
 a[aria-disabled='true'] {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-decoration: none;
 }
 
