@@ -24,19 +24,27 @@ function App() {
           </div>
 
           <div className="page-hero">
-            <div className="page-hero__intro">
-              <span className="page-hero__eyebrow">{cv.metadata.headline}</span>
-              <h1 className="page-hero__title" id="cv-title">
-                {cv.metadata.name}
-              </h1>
-              <ul className="page-hero__details" aria-label={cv.metadata.detailsLabel}>
-                {cv.metadata.details.map((detail) => (
-                  <li key={detail.label}>
-                    <span className="page-hero__details-label">{detail.label}</span>
-                    <span>{detail.value}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="page-hero__profile">
+              <figure className="page-hero__media">
+                <img
+                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=320&q=80"
+                  alt={cv.metadata.name}
+                />
+              </figure>
+              <div className="page-hero__intro">
+                <span className="page-hero__eyebrow">{cv.metadata.headline}</span>
+                <h1 className="page-hero__title" id="cv-title">
+                  {cv.metadata.name}
+                </h1>
+                <ul className="page-hero__details" aria-label={cv.metadata.detailsLabel}>
+                  {cv.metadata.details.map((detail) => (
+                    <li key={detail.label}>
+                      <span className="page-hero__details-label">{detail.label}</span>
+                      <span>{detail.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <aside className="page-hero__contacts" aria-labelledby="contact-title">
               <h2 className="section-title" id="contact-title">
