@@ -2,11 +2,13 @@ import './App.css'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
 import { ThemeSwitcher } from './components/ThemeSwitcher'
 import { Section } from './components/Section'
+import { PortfolioCarousel } from './components/PortfolioCarousel'
 import { useI18n } from './i18n'
 
 function App() {
   const { translation } = useI18n()
   const { cv, layout } = translation
+  const { metadata, contact, summary, experience, events, education, skills, tools, portfolio, logos, footer } = cv
 
   return (
     <div className="app">
@@ -28,16 +30,16 @@ function App() {
               <figure className="page-hero__media">
                 <img
                   src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=320&q=80"
-                  alt={cv.metadata.name}
+                  alt={metadata.name}
                 />
               </figure>
               <div className="page-hero__intro">
-                <span className="page-hero__eyebrow">{cv.metadata.headline}</span>
+                <span className="page-hero__eyebrow">{metadata.headline}</span>
                 <h1 className="page-hero__title" id="cv-title">
-                  {cv.metadata.name}
+                  {metadata.name}
                 </h1>
-                <ul className="page-hero__details" aria-label={cv.metadata.detailsLabel}>
-                  {cv.metadata.details.map((detail) => (
+                <ul className="page-hero__details" aria-label={metadata.detailsLabel}>
+                  {metadata.details.map((detail) => (
                     <li key={detail.label}>
                       <span className="page-hero__details-label">{detail.label}</span>
                       <span>{detail.value}</span>
@@ -48,10 +50,10 @@ function App() {
             </div>
             <aside className="page-hero__contacts" aria-labelledby="contact-title">
               <h2 className="section-title" id="contact-title">
-                {cv.contact.title}
+                {contact.title}
               </h2>
               <ul className="contact-list">
-                {cv.contact.items.map((item) => (
+                {contact.items.map((item) => (
                   <li key={item.label} className="contact-list__item">
                     <span className="contact-list__icon material-symbols-rounded" aria-hidden="true">
                       {item.icon}
@@ -74,13 +76,56 @@ function App() {
           </div>
         </header>
 
+        {summary.tldr ? (
+          <section className="tldr" aria-labelledby="tldr-title">
+            <div className="tldr__inner">
+              <header className="tldr__header">
+                <span className="tldr__icon material-symbols-rounded" aria-hidden="true">
+                  bolt
+                </span>
+                <h2 className="tldr__title" id="tldr-title">
+                  {summary.tldr.title}
+                </h2>
+              </header>
+              <ul className="tldr__list">
+                {summary.tldr.items.map((item) => (
+                  <li key={item.title} className="tldr__item">
+                    <h3 className="tldr__item-title">{item.title}</h3>
+                    <p className="tldr__item-copy">{item.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
+
         <main className="page-content" id="main-content">
-          <Section id="summary" title={cv.summary.title} icon="auto_stories">
-            <p>{cv.summary.description}</p>
+          <Section id="summary" title={summary.title} icon="auto_stories">
+            <div className="summary-layout">
+              <p className="summary-layout__intro">{summary.description}</p>
+              {summary.about ? (
+                <article className="summary-about" aria-labelledby="summary-about-title">
+                  <header className="summary-about__header">
+                    <span className="summary-about__icon" aria-hidden="true">
+                      ★
+                    </span>
+                    <h3 className="summary-about__title" id="summary-about-title">
+                      {summary.about.title}
+                    </h3>
+                  </header>
+                  <div className="summary-about__body">
+                    {summary.about.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <p className="summary-about__highlight">{summary.about.highlight}</p>
+                </article>
+              ) : null}
+            </div>
           </Section>
-          <Section id="experience" title={cv.experience.title} icon="work">
+          <Section id="experience" title={experience.title} icon="work">
             <div className="experience-list">
-              {cv.experience.items.map((item) => (
+              {experience.items.map((item) => (
                 <article key={`${item.company}-${item.role}`} className="experience-card">
                   <header className="experience-card__header">
                     <p className="experience-card__company">{item.company}</p>
@@ -94,16 +139,54 @@ function App() {
                   <p className="experience-card__description">{item.description}</p>
                   <ul className="experience-card__achievements">
                     {item.achievements.map((achievement) => (
-                      <li key={achievement}>{achievement}</li>
+                      <li key={achievement}>
+                        <span className="experience-card__marker material-symbols-rounded" aria-hidden="true">
+                          verified
+                        </span>
+                        <span>{achievement}</span>
+                      </li>
                     ))}
                   </ul>
                 </article>
               ))}
             </div>
           </Section>
-          <Section id="education" title={cv.education.title} icon="school">
+          {events ? (
+            <Section id="events" title={events.title} icon="emoji_events">
+              <div className="event-grid">
+                {events.items.map((event) => (
+                  <article key={`${event.title}-${event.period}`} className="event-card">
+                    <header className="event-card__header">
+                      <p className="event-card__title">{event.title}</p>
+                      <p className="event-card__meta">
+                        <span>{event.role}</span>
+                        <span aria-hidden="true"> · </span>
+                        <span>{event.period}</span>
+                      </p>
+                      <p className="event-card__location">{event.location}</p>
+                    </header>
+                    <p className="event-card__description">{event.description}</p>
+                    {event.link ? (
+                      <a
+                        className="event-card__link"
+                        href={event.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>{event.link.label}</span>
+                        <span className="material-symbols-rounded" aria-hidden="true">
+                          north_east
+                        </span>
+                      </a>
+                    ) : null}
+                  </article>
+                ))}
+              </div>
+            </Section>
+          ) : null}
+          <Section id="education" title={education.title} icon="school">
             <ul className="education-list">
-              {cv.education.items.map((item) => (
+              {education.items.map((item) => (
                 <li key={`${item.institution}-${item.period}`} className="education-list__item">
                   <div className="education-list__heading">
                     <h3 className="education-list__degree">{item.degree}</h3>
@@ -118,9 +201,9 @@ function App() {
               ))}
             </ul>
           </Section>
-          <Section id="skills" title={cv.skills.title} icon="psychology">
+          <Section id="skills" title={skills.title} icon="psychology">
             <div className="skills-grid">
-              {cv.skills.groups.map((group) => (
+              {skills.groups.map((group) => (
                 <section key={group.title} aria-label={group.title} className="skills-grid__group">
                   <h3 className="skills-grid__title">{group.title}</h3>
                   <ul className="skills-grid__list">
@@ -132,21 +215,60 @@ function App() {
               ))}
             </div>
           </Section>
+          {tools ? (
+            <Section id="tools" title={tools.title} icon="build">
+              <div className="skills-grid">
+                {tools.groups.map((group) => (
+                  <section key={group.title} aria-label={group.title} className="skills-grid__group">
+                    <h3 className="skills-grid__title">{group.title}</h3>
+                    <ul className="skills-grid__list skills-grid__list--tools">
+                      {group.items.map((tool) => (
+                        <li key={tool}>{tool}</li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </Section>
+          ) : null}
+          {portfolio ? (
+            <Section id="portfolio" title={portfolio.title} icon="view_carousel">
+              <PortfolioCarousel items={portfolio.items} toggle={portfolio.toggle} />
+            </Section>
+          ) : null}
+          {logos ? (
+            <Section id="logos" title={logos.title} icon="diversity_2">
+              <ul className="logo-grid">
+                {logos.items.map((logo) => (
+                  <li key={logo.href} className="logo-grid__item">
+                    <a
+                      className="logo-grid__link"
+                      href={logo.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img className="logo-grid__image" src={logo.src} alt={logo.alt} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          ) : null}
         </main>
 
         <footer className="site-footer">
-          <p>{cv.footer.note}</p>
-          {cv.footer.pdfLink && (
+          <p>{footer.note}</p>
+          {footer.pdfLink && (
             <a
               className="site-footer__pdf-link"
-              href={cv.footer.pdfLink.href}
+              href={footer.pdfLink.href}
               target="_blank"
               rel="noopener noreferrer"
             >
               <span className="material-symbols-rounded" aria-hidden="true">
                 picture_as_pdf
               </span>
-              <span>{cv.footer.pdfLink.label}</span>
+              <span>{footer.pdfLink.label}</span>
             </a>
           )}
         </footer>
