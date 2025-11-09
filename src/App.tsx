@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
 import { ThemeSwitcher } from './components/ThemeSwitcher'
@@ -10,6 +11,8 @@ function App() {
   const { cv, layout } = translation
   const { metadata, contact, summary, experience, events, education, skills, tools, portfolio, logos, footer } = cv
 
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
   const handleBackToTop = () => {
     if (typeof window === 'undefined') {
       return
@@ -17,6 +20,32 @@ function App() {
 
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 280)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const backToTopClassName = [
+    'site-footer__back-to-top',
+    'site-footer__action',
+    'back-to-top-button',
+    showBackToTop ? 'back-to-top-button--visible' : undefined,
+  ]
+    .filter((className): className is string => Boolean(className))
+    .join(' ')
 
   return (
     <div className="app">
@@ -324,7 +353,13 @@ function App() {
                 <span>{footer.pdfLink.label}</span>
               </a>
             )}
-            <button type="button" className="site-footer__back-to-top site-footer__action" onClick={handleBackToTop}>
+            <button
+              type="button"
+              className={backToTopClassName}
+              onClick={handleBackToTop}
+              aria-hidden={!showBackToTop}
+              tabIndex={showBackToTop ? 0 : -1}
+            >
               <span className="material-symbols-rounded" aria-hidden="true">
                 north
               </span>
