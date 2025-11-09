@@ -92,9 +92,20 @@
 
 .language-switcher:hover,
 .language-switcher:focus-within {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+  background: var(--accent);
   color: var(--accent-contrast);
+  box-shadow: 0 6px 14px -8px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.language-switcher:hover .language-switcher__select,
+.language-switcher:focus-within .language-switcher__select {
+  color: inherit;
+}
+
+.language-switcher:hover .language-switcher__icon,
+.language-switcher:focus-within .language-switcher__icon {
+  color: inherit;
 }
 
 .language-switcher__icon {
