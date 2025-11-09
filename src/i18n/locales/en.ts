@@ -10,6 +10,7 @@ const en = {
     themeOptionSystem: 'System',
     themeOptionLight: 'Light',
     themeOptionDark: 'Dark',
+    backToTop: 'Back to top',
     pdfControlsLabel: 'PDF controls',
     headerControlsLabel: 'Header controls',
   },
@@ -252,25 +253,12 @@ const en = {
       },
       items: [
         {
-          title: 'BetBoom Dacha Dubai 2024',
-          description: 'Handled CS2 and Dota 2 observer feeds, prepared cinematic flythroughs, and kept sponsor placements on schedule',
+          title: 'The team that owns the stage',
+          description:
+            'My favourite moments are when our team lights up the arena together — I make sure the broadcast keeps those smiles front and centre.',
           mediaType: 'image',
-          src: 'https://images.unsplash.com/photo-1526404079167-7a174eea6b52?auto=format&fit=crop&w=900&q=80',
-          alt: 'Arena stage with lighting rig',
-        },
-        {
-          title: 'Riyadh Masters 2024',
-          description: 'Delivered clean feeds for the international broadcast and adapted coverage for multiple languages',
-          mediaType: 'image',
-          src: 'https://images.unsplash.com/photo-1511735111819-9a3f7709049c?auto=format&fit=crop&w=900&q=80',
-          alt: 'Esports stage with players',
-        },
-        {
-          title: 'Elite League Season 2',
-          description: 'Coordinated remote observer setup with custom keybind maps and instant stat delivery to designers',
-          mediaType: 'image',
-          src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
-          alt: 'Production control room',
+          src: '/highlights/team.jpg',
+          alt: 'Observer team celebrating on the arena stage',
         },
       ],
     },

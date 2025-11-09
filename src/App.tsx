@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
 import { ThemeSwitcher } from './components/ThemeSwitcher'
@@ -9,6 +10,42 @@ function App() {
   const { translation } = useI18n()
   const { cv, layout } = translation
   const { metadata, contact, summary, experience, events, education, skills, tools, portfolio, logos, footer } = cv
+
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
+  const handleBackToTop = () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 280)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const backToTopClassName = [
+    'site-footer__back-to-top',
+    'site-footer__action',
+    'back-to-top-button',
+    showBackToTop ? 'back-to-top-button--visible' : undefined,
+  ]
+    .filter((className): className is string => Boolean(className))
+    .join(' ')
 
   return (
     <div className="app">
@@ -255,11 +292,6 @@ function App() {
               {skills.groups.map((group) => (
                 <section key={group.title} aria-label={group.title} className="skills-grid__group">
                   <h3 className="skills-grid__title">{group.title}</h3>
-                  {group.description ? (
-                    <div className="skills-grid__callout">
-                      <p>{group.description}</p>
-                    </div>
-                  ) : null}
                   <ul className="skills-grid__list">
                     {group.items.map((skill) => (
                       <li key={skill}>{skill}</li>
@@ -307,19 +339,33 @@ function App() {
 
         <footer className="site-footer">
           <p>{footer.note}</p>
-          {footer.pdfLink && (
-            <a
-              className="site-footer__pdf-link"
-              href={footer.pdfLink.href}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="site-footer__actions">
+            {footer.pdfLink && (
+              <a
+                className="site-footer__pdf-link site-footer__action"
+                href={footer.pdfLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="material-symbols-rounded" aria-hidden="true">
+                  picture_as_pdf
+                </span>
+                <span>{footer.pdfLink.label}</span>
+              </a>
+            )}
+            <button
+              type="button"
+              className={backToTopClassName}
+              onClick={handleBackToTop}
+              aria-hidden={!showBackToTop}
+              tabIndex={showBackToTop ? 0 : -1}
             >
               <span className="material-symbols-rounded" aria-hidden="true">
-                picture_as_pdf
+                north
               </span>
-              <span>{footer.pdfLink.label}</span>
-            </a>
-          )}
+              <span>{layout.backToTop}</span>
+            </button>
+          </div>
         </footer>
       </div>
     </div>

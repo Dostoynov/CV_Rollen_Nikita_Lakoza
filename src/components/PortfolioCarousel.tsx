@@ -54,18 +54,22 @@ export const PortfolioCarousel = ({ items, toggle }: PortfolioCarouselProps) => 
 
   const rootClasses = ['portfolio-carousel']
 
-  if (isMobile && !isExpanded) {
-    rootClasses.push('portfolio-carousel--collapsed')
-  }
-
-  if (isMobile && isExpanded) {
-    rootClasses.push('portfolio-carousel--expanded')
-  }
-
   const normalizedItems: PortfolioItem[] = items.map((item) => ({
     ...item,
     mediaType: item.mediaType === 'video' ? 'video' : 'image',
   }))
+
+  const isExpandable = normalizedItems.length > 1
+
+  if (isMobile && isExpandable && !isExpanded) {
+    rootClasses.push('portfolio-carousel--collapsed')
+  }
+
+  if (isMobile && isExpandable && isExpanded) {
+    rootClasses.push('portfolio-carousel--expanded')
+  }
+
+  const canToggle = isMobile && toggle && isExpandable
 
   return (
     <div className={rootClasses.join(' ')}>
@@ -97,7 +101,7 @@ export const PortfolioCarousel = ({ items, toggle }: PortfolioCarouselProps) => 
           ))}
         </ul>
       </div>
-      {isMobile && toggle ? (
+      {canToggle ? (
         <button
           type="button"
           className="portfolio-carousel__toggle"
