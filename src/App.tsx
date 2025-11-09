@@ -90,24 +90,53 @@ function App() {
                 {contact.title}
               </h2>
               <ul className="contact-list">
-                {contact.items.map((item) => (
-                  <li key={item.label} className="contact-list__item">
-                    <span className="contact-list__icon material-symbols-rounded" aria-hidden="true">
-                      {item.icon}
-                    </span>
-                    <div className="contact-list__content">
-                      <span className="contact-list__label">{item.label}</span>
+                {contact.items.map((item) => {
+                  const isEmail = item.href.startsWith('mailto:')
+                  const valueText = typeof item.value === 'string' ? item.value : ''
+                  const hasValue = valueText.trim().length > 0
+
+                  const cardClassName = [
+                    'contact-card',
+                    hasValue ? undefined : 'contact-card--title-only',
+                  ]
+                    .filter((className): className is string => Boolean(className))
+                    .join(' ')
+
+                  return (
+                    <li key={item.label} className="contact-list__item">
                       <a
-                        className="contact-list__link"
+                        className={cardClassName}
                         href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={isEmail ? undefined : '_blank'}
+                        rel={isEmail ? undefined : 'noopener noreferrer'}
                       >
-                        {item.value}
+                        <span className="contact-card__icon material-symbols-rounded" aria-hidden="true">
+                          {item.icon}
+                        </span>
+                        <div
+                          className={[
+                            'contact-card__content',
+                            hasValue ? undefined : 'contact-card__content--standalone',
+                          ]
+                            .filter((className): className is string => Boolean(className))
+                            .join(' ')}
+                        >
+                          {hasValue ? (
+                            <>
+                              <span className="contact-card__label">{item.label}</span>
+                              <span className="contact-card__value">{valueText}</span>
+                            </>
+                          ) : (
+                            <span className="contact-card__title">{item.label}</span>
+                          )}
+                        </div>
+                        <span className="contact-card__arrow material-symbols-rounded" aria-hidden="true">
+                          north_east
+                        </span>
                       </a>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  )
+                })}
               </ul>
             </aside>
           </div>
@@ -249,9 +278,47 @@ function App() {
                     <section key={category.title} className="tournament-card" aria-label={category.title}>
                       <h3 className="section-subtitle">{category.title}</h3>
                       <ul className="tournament-list">
-                        {category.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
+                        {category.tournaments.map((tournament) => {
+                          const [primaryLink, ...extraLinks] = tournament.links
+
+                          if (!primaryLink) {
+                            return null
+                          }
+
+                          return (
+                            <li key={tournament.name} className="tournament-list__item">
+                              <a
+                                className="tournament-link"
+                                href={primaryLink.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <span className="tournament-link__name">{tournament.name}</span>
+                                <span className="tournament-link__arrow material-symbols-rounded" aria-hidden="true">
+                                  north_east
+                                </span>
+                              </a>
+                              {extraLinks.length ? (
+                                <div className="tournament-extras" aria-label={`${tournament.name} additional links`}>
+                                  {extraLinks.map((link) => (
+                                    <a
+                                      key={`${tournament.name}-${link.href}`}
+                                      className="tournament-extra-link"
+                                      href={link.href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <span>{link.label ?? 'More info'}</span>
+                                      <span className="material-symbols-rounded" aria-hidden="true">
+                                        north_east
+                                      </span>
+                                    </a>
+                                  ))}
+                                </div>
+                              ) : null}
+                            </li>
+                          )
+                        })}
                       </ul>
                     </section>
                   ))}
