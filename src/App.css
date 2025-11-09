@@ -491,6 +491,13 @@
   align-items: start;
 }
 
+@media (min-width: 900px) {
+  .summary-layout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
 .summary-layout__intro-block {
   display: grid;
   gap: 0.9rem;
@@ -917,11 +924,90 @@
 
 .tournament-list {
   margin: 0;
-  padding-left: 1.25rem;
+  padding: 0;
+  list-style: none;
   display: grid;
-  gap: 0.5rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
+  gap: 0.6rem;
+}
+
+.tournament-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tournament-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: 0.35rem 0;
+  transition: color 0.2s ease;
+}
+
+.tournament-link__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tournament-link__arrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+  color: color-mix(in srgb, var(--text-muted) 80%, transparent);
+}
+
+.tournament-link:hover,
+.tournament-link:focus-visible {
+  color: var(--accent);
+}
+
+.tournament-link:hover .tournament-link__arrow,
+.tournament-link:focus-visible .tournament-link__arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.tournament-link:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.tournament-extras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding-inline-start: 1.6rem;
+}
+
+.tournament-extra-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: color-mix(in srgb, var(--text-muted) 90%, transparent);
+  transition: color 0.2s ease;
+}
+
+.tournament-extra-link .material-symbols-rounded {
+  font-size: 1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.tournament-extra-link:hover,
+.tournament-extra-link:focus-visible {
+  color: var(--accent);
+}
+
+.tournament-extra-link:hover .material-symbols-rounded,
+.tournament-extra-link:focus-visible .material-symbols-rounded {
+  color: var(--accent);
+  transform: translate(2px, -2px);
 }
 
 .portfolio-carousel {

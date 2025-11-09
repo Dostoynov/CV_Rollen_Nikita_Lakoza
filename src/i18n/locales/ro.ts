@@ -1,3 +1,4 @@
+import { tournamentCategories } from '../../data/tournaments'
 import type { Translation } from './en'
 
 const ro: Translation = {
@@ -49,19 +50,19 @@ const ro: Translation = {
         },
         {
           label: 'LinkedIn',
-          value: 'linkedin.com/in/nikita-lakoza-98a339275',
+          value: 'Nikita Lakoza',
           href: 'https://www.linkedin.com/in/nikita-lakoza-98a339275',
           icon: 'handshake',
         },
         {
           label: 'Liquipedia (Counter-Strike)',
-          value: 'liquipedia.net/counterstrike/Rollen',
+          value: 'Profil Counter-Strike',
           href: 'https://liquipedia.net/counterstrike/Rollen',
           icon: 'travel_explore',
         },
         {
           label: 'Liquipedia (Dota 2)',
-          value: 'liquipedia.net/dota2/Rollen',
+          value: 'Profil Dota 2',
           href: 'https://liquipedia.net/dota2/Rollen',
           icon: 'travel_explore',
         },
@@ -142,41 +143,7 @@ const ro: Translation = {
         description: string
         link?: { label: string; href: string }
       }[],
-      categories: [
-        {
-          title: 'CS2',
-          items: [
-            'BetBoom Dacha Dubai 2023: Closed Qualifier',
-            'BetBoom Dacha Dubai 2023',
-            'BetBoom Dacha Belgrade 2024: South American Qualifier',
-            'BetBoom Dacha Belgrade #1 2024',
-            'BetBoom Dacha Belgrade #2 2024',
-            'FISSURE Playground #1',
-            'FISSURE Playground #2',
-          ],
-        },
-        {
-          title: 'Dota 2',
-          items: [
-            'Bali Major 2023',
-            'The International 2023 – North America Qualifier',
-            'The International 2023 – South America Qualifier',
-            'The International 2023 – Southeast Asia Qualifier',
-            'The International 2023',
-            'BetBoom Dacha Dubai 2024',
-            'Elite League Season 1',
-            'Elite League Season 2',
-            'Riyadh Masters 2024',
-            'BetBoom Dacha Belgrade 2024',
-            'FISSURE Universe: Episode 2',
-            'FISSURE Universe: Episode 5',
-            'FISSURE Universe: Episode 6',
-            'FISSURE Special',
-            'FISSURE Playground 2 CQ',
-            'FISSURE Playground 2',
-          ],
-        },
-      ],
+      categories: tournamentCategories,
     },
     education: {
       title: 'Training & mentorat',
