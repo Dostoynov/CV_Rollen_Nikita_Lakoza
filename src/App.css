@@ -1189,6 +1189,10 @@
   z-index: 2;
 }
 
+.portfolio-card__overlay--static {
+  pointer-events: none;
+}
+
 .portfolio-card__title {
   margin: 0;
   font-size: clamp(0.85rem, 2.2vw, 1rem);

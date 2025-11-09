@@ -94,6 +94,7 @@ export const PortfolioCarousel = ({ items, toggle }: PortfolioCarouselProps) => 
               item.mediaType === 'video' && videoFallbacks[item.title] && item.fallback?.mediaType === 'iframe'
             const itemClasses = ['portfolio-carousel__item']
             const cardClasses = ['portfolio-card']
+            const overlayClasses = ['portfolio-card__overlay']
 
             if (item.orientation === 'portrait') {
               itemClasses.push('portfolio-carousel__item--portrait')
@@ -103,6 +104,7 @@ export const PortfolioCarousel = ({ items, toggle }: PortfolioCarouselProps) => 
             if (isMotionMedia) {
               itemClasses.push('portfolio-carousel__item--motion')
               cardClasses.push('portfolio-card--motion')
+              overlayClasses.push('portfolio-card__overlay--static')
             } else {
               cardClasses.push('portfolio-card--image')
             }
@@ -164,12 +166,10 @@ export const PortfolioCarousel = ({ items, toggle }: PortfolioCarouselProps) => 
                         />
                       </>
                     )}
-                    {!isMotionMedia ? (
-                      <figcaption className="portfolio-card__overlay">
-                        <h3 className="portfolio-card__title">{item.title}</h3>
-                        <p className="portfolio-card__description">{item.description}</p>
-                      </figcaption>
-                    ) : null}
+                    <figcaption className={overlayClasses.join(' ')}>
+                      <h3 className="portfolio-card__title">{item.title}</h3>
+                      <p className="portfolio-card__description">{item.description}</p>
+                    </figcaption>
                   </figure>
                 </article>
               </li>
