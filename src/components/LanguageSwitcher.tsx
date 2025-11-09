@@ -1,22 +1,40 @@
+import type { ChangeEvent } from 'react'
 import { useI18n } from '../i18n'
+
+const formatOptionLabel = (label: string, nativeName: string) => {
+  if (label.toLowerCase() === nativeName.toLowerCase()) {
+    return nativeName
+  }
+
+  return `${nativeName} · ${label}`
+}
 
 export const LanguageSwitcher = () => {
   const { locale, setLocale, availableLocales, translation } = useI18n()
 
-  const currentIndex = availableLocales.findIndex(({ code }) => code === locale)
-  const safeIndex = currentIndex === -1 ? 0 : currentIndex
-  const nextIndex = (safeIndex + 1) % availableLocales.length
-  const nextLocale = availableLocales[nextIndex]
-  const currentLocale = availableLocales[safeIndex]
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target
+    setLocale(value as typeof locale)
+  }
 
   return (
-    <button
-      type="button"
-      className="language-switcher"
-      onClick={() => setLocale(nextLocale.code)}
-      aria-label={translation.layout.languageSwitcherLabel}
-    >
-      <span aria-hidden="true">{currentLocale.code.toUpperCase()}</span>
-    </button>
+    <label className="language-switcher">
+      <span className="visually-hidden">{translation.layout.languageSwitcherLabel}</span>
+      <select
+        className="language-switcher__select"
+        value={locale}
+        onChange={handleChange}
+        aria-label={translation.layout.languageSwitcherLabel}
+      >
+        {availableLocales.map(({ code, label: localeLabel, nativeName }) => (
+          <option key={code} value={code}>
+            {formatOptionLabel(localeLabel, nativeName)}
+          </option>
+        ))}
+      </select>
+      <span className="language-switcher__icon material-symbols-rounded" aria-hidden="true">
+        expand_more
+      </span>
+    </label>
   )
 }

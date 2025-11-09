@@ -1,10 +1,14 @@
 import { createContext } from 'react'
 import en, { type Translation } from './locales/en'
+import de from './locales/de'
+import ro from './locales/ro'
 import ru from './locales/ru'
 
 export const locales = {
   en,
   ru,
+  de,
+  ro,
 } as const
 
 export type Locale = keyof typeof locales

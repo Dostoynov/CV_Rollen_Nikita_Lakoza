@@ -18,26 +18,26 @@ const en = {
     exportPdf: 'Export PDF',
     viewPdf: 'View PDF',
     exportComingSoon:
-      'PDF export and permanent links are on the roadmap. The controls will activate once the pipeline is connected.',
+      'Export and static links will arrive later. The controls activate once the pipeline is connected.',
   },
   cv: {
     metadata: {
       name: 'Nikita “Rollen” Lakoza',
-      headline: 'Observer / Production Staff for CS2 and Dota 2',
+      headline: 'Freelance Counter-Strike and Dota 2 Observer / Esports',
       detailsLabel: 'Professional details',
       details: [
         {
           label: 'Location',
-          value: 'Belgrade, Serbia — ready for travel',
+          value: 'Belgrade, Serbia — available for travel and relocation',
         },
         {
           label: 'Disciplines',
-          value: 'Counter-Strike 2 & Dota 2 broadcasts',
+          value: 'Counter-Strike 2 and Dota 2',
         },
       ],
     },
     contact: {
-      title: 'Contact',
+      title: 'Contacts',
       items: [
         {
           label: 'Email',
@@ -68,42 +68,42 @@ const en = {
     summary: {
       title: 'About me',
       description:
-        'I am Nikita “Rollen” Lakoza — an observer for Counter-Strike 2 and Dota 2. Since February 2023 I have worked on FISSURE and BetBoom tournaments, including The International qualifiers and large commercial leagues such as Elite League and Riyadh Masters.',
-      note: 'Based in Belgrade, available for travel and on-site events',
+        'I am Nikita “Rollen” Lakoza — an observer for Counter-Strike 2 and Dota 2. Since February 2023 I have worked on FISSURE and BetBoom tournaments, including The International qualifiers and major commercial leagues (Elite League, Riyadh Masters, BetBoom Dacha).',
+      note: 'Based in Belgrade, ready for travel, on-site events, and relocation',
       tldr: {
         title: 'TLDR',
         items: [
           {
             title: 'Tournament observer',
-            description: 'Delivers clean, engaging coverage for CS2 and Dota 2 finals, qualifiers, and long-format leagues',
+            description: 'Deliver clean, spectacular coverage for CS2 and Dota 2 championships',
           },
           {
-            title: 'Production-ready',
-            description: 'Configures PCs, flythroughs, overlays, and clean feeds to match broadcast requirements without downtime',
+            title: 'Live production experience',
+            description: 'Configure PCs, flythroughs, overlays, and clean feeds to match broadcast requirements',
           },
           {
-            title: 'Team enabler',
-            description: 'Builds processes, trains observers, and shares ready-made configs for rapid team onboarding',
+            title: 'Team contributor',
+            description: 'Build workflows, train observers, and share ready-to-use configs and keybinds',
           },
         ],
       },
       about: {
-        title: 'What I take care of',
+        title: 'What I do',
         paragraphs: [
-          'My responsibility is to make the in-game picture clear for the audience: I decide who to show, when to launch a cinematic flythrough, when to display ads, and I can suggest the best moment for a replay',
+          'My responsibility is to make the in-game picture clear for the audience: I decide who to show, when to launch a cinematic flythrough, when to display ads, and what deserves a replay.',
         ],
         listTitle: 'I can',
         list: [
           'observe a live match with the most engaging coverage',
           'prepare exclusive cinematic flythroughs tailored to a specific tournament',
-          'deliver an SRT or YouTube Clean Feed',
+          'deliver an SRT or YouTube clean feed',
           'configure the game and NVIDIA settings for broadcast requirements',
           'work with OBS and assemble scenes in vMix',
           'work with production hardware (SDI/coaxial, ATEM, BMD converters)',
           'train other observers and share ready-made configs and keybinds',
         ],
         highlight: 'I am the only documented notable observer on Liquipedia for Counter-Strike and Dota 2',
-        note: 'I also support diagnostics, equipment upgrades, and quick fixes on site when something breaks',
+        note: '',
       },
     },
     experience: {
@@ -114,23 +114,24 @@ const en = {
           company: 'FISSURE.pro',
           period: 'February 2023 — present',
           location: 'Dubai · Yerevan · Belgrade (hybrid)',
-          description: 'Observer for Counter-Strike 2 and Dota 2 tournaments across international productions',
+          description: 'Observe CS2 and Dota 2 tournaments, covering broadcast and production tasks',
           achievements: [
-            'Observe CS2 and Dota 2 matches live on air, adapting the broadcast for studio and LAN feeds',
-            'Prepare and launch cinematic flythroughs for advertising integrations tailored to each tournament',
-            'Capture and deliver the game’s Clean Feed to the broadcast director on demand',
-            'Tune in-game graphics and NVIDIA parameters so the signal stays stable throughout the show',
-            'Build the chain “game → Telegram ChatBot → JSON for GFX” so post-match stats reach designers instantly',
-            'Help commentators install configs for both disciplines and keep them updated',
-            'Cover an event as a solo observer when needed, including 15-hour shifts across multiple countries',
-            'Support diagnostics and assembly of observer PCs, including purchasing or renting equipment',
+            'Observe CS2 and Dota 2 live on air, balancing viewer interests with production goals',
+            'Adapt the setup for studio broadcasts or LAN tournaments',
+            'Prepare and launch cinematic flythroughs and advertising integrations',
+            'Deliver a clean feed of the game directly to the broadcast director',
+            'Adjust graphics and NVIDIA settings so the game stays rich and stable',
+            'Build the “game → Telegram ChatBot → JSON” chain for instant stat delivery to designers',
+            'Help commentators install configs for both disciplines',
+            'Cover an event as a solo observer when needed and handle long shifts',
+            'Diagnose and assemble observer PCs, including sourcing and renting equipment',
           ],
         },
       ],
     },
     events: {
       title: 'Tournaments & events',
-      intro: 'Broadcasts I have supported as a lead observer or part of the production team',
+      intro: 'I have contributed to the broadcasts of the following tournaments',
       items: [] as {
         title: string
         role: string
@@ -141,7 +142,7 @@ const en = {
       }[],
       categories: [
         {
-          title: 'Counter-Strike 2',
+          title: 'CS2',
           items: [
             'BetBoom Dacha Dubai 2023: Closed Qualifier',
             'BetBoom Dacha Dubai 2023',
@@ -179,51 +180,52 @@ const en = {
       title: 'Training & mentoring',
       items: [
         {
-          degree: 'Mentored two observers to main-broadcast level for Dota 2 and CS2',
+          degree: 'Mentored two observers to Tier 1 level for Dota 2 and CS2',
           institution: 'FISSURE.pro internal academy',
-          period: '2023 — 2024',
-          location: 'Remote & on-site',
-          description: 'Shared keybind maps, configs, and workflows so they could reproduce the setup independently',
+          period: '2023; 2024',
+          location: 'Remote and on site',
+          description: 'Led and contributed to creating keybind maps and configs so colleagues can reproduce my setup independently',
         },
         {
-          degree: 'Observer workstation upgrades',
+          degree: 'Boosting the observer workspace',
           institution: 'FISSURE.pro broadcast team',
-          period: '2023 — 2024',
+          period: '2023; 2024; 2025',
           location: 'Dubai · Yerevan · Belgrade',
-          description: 'Expanded the observer workspace with monitors, headsets, and software tuned for fast switching',
+          description: 'Configured the observer setup — monitors, headsets, and software — making everyday work easier and boosting broadcast quality significantly',
         },
       ],
     },
     skills: {
       title: 'Functions & contribution',
-      note: 'I focus on coverage that keeps production safe while giving viewers the best possible story',
+      note: 'I make the broadcast safer for production and exciting for viewers',
       groups: [
         {
           title: 'Live broadcast',
           items: [
-            'Observe CS2 and Dota 2 matches live with both viewer engagement and production goals in mind',
-            'Adapt each feed for studio, LAN, and clean broadcast outputs',
-            'Launch cinematic flythroughs and sponsor placements at the right moment',
+            'Observe CS2 and Dota 2 live with both viewer engagement and production tasks in mind',
+            'Adapt the setup for studio broadcasts or LAN tournaments',
+            'Launch cinematic flythroughs and advertising integrations at the right moment',
+            'Keep the game vibrant and engaging for viewers',
           ],
         },
         {
-          title: 'Production pipeline',
+          title: 'Production',
           items: [
-            'I do more than show the game — I understand every “wire” that carries the signal, which helps me fix issues fast',
+            'Understand which “wire” carries the signal, so I quickly find and solve technical issues',
             'Work with coaxial and SDI cabling, ATEM switchers, and BMD converters',
-            'Monitor signal and frame rate, diagnosing drops and mismatches on the fly',
-            'Replace cables, converters, or even the PC when needed and keep drivers updated',
-            'Assemble and upgrade observer PCs for specific tournaments and travel scenarios',
-            'Keep poor internet stable by rerouting traffic or using services like ExitLag during qualifiers',
+            'Monitor signal and frame rate, catching drops and mismatches instantly',
+            'Swap cables, converters, or even PCs on short notice and update drivers',
+            'Assemble and upgrade observer PCs for specific tournaments and travel conditions',
+            'Stabilize internet in tough conditions, including via ExitLag during qualifiers',
           ],
         },
         {
-          title: 'Team enablement',
+          title: 'Team',
           items: [
-            'Build the “game → Telegram ChatBot → JSON” chain so post-map statistics reach GFX without loss',
-            'Prepare and install configs for both disciplines, helping casters set up quickly',
-            'Expand the observer workspace with custom keybind maps, including undocumented binds',
-            'Train new observers, explain logic, and share ready-made configs and processes',
+            'Build the “game → Telegram ChatBot → JSON” chain so statistics reach designers instantly',
+            'Prepare and install configs for casters and observers, speeding up their setup',
+            'Expand the observer workspace and share keybind maps, including rare combinations',
+            'Train new observers, explain logic, and share working processes',
           ],
         },
       ],
@@ -233,15 +235,22 @@ const en = {
       groups: [
         {
           title: 'Game & observer',
-          items: ['HLAE', 'Custom HUD / MyHUD / BoltObserv', 'Configs for CS2 and Dota 2', 'AutoHotkey (automation)'],
+          items: ['HLAE', 'Custom HUD / MyHUD / BoltObserv', 'Configs for CS2 and Dota 2', 'AutoHotkey (automation)', 'ExitLag'],
         },
         {
           title: 'Production',
-          items: ['OBS — configuring scenes and output', 'vMix — building scenes and inputs', 'ATEM Mini', 'Stream Deck', 'BMD Converter HDMI↔SDI'],
+          items: [
+            'Companion — control and automation',
+            'OBS — configuring scenes, sources, and output',
+            'vMix — building scenes and connecting feeds',
+            'ATEM Mini',
+            'Stream Deck',
+            'BMD Converter HDMI↔SDI',
+          ],
         },
         {
           title: 'Development & services',
-          items: ['Python (simple scripts and stat delivery)', 'VS Code'],
+          items: ['Cursor — coding and AI', 'Python — simple scripts and stat delivery'],
         },
       ],
     },
@@ -253,9 +262,8 @@ const en = {
       },
       items: [
         {
-          title: 'The team that owns the stage',
-          description:
-            'My favourite moments are when our team lights up the arena together — I make sure the broadcast keeps those smiles front and centre.',
+          title: 'The team that lights up the stage',
+          description: 'Best emotions after a tournament',
           mediaType: 'image',
           src: '/highlights/team.jpg',
           alt: 'Observer team celebrating on the arena stage',
@@ -282,13 +290,13 @@ const en = {
         },
         {
           href: 'https://fissure.pro',
-          src: 'https://dummyimage.com/160x60/1a1a1a/ffffff&text=FISSURE',
+          src: '/logos/fissure.png',
           alt: 'FISSURE.pro logo',
         },
       ],
     },
     footer: {
-      note: 'Let’s collaborate on your next broadcast — reach out anytime',
+      note: 'Happy to discuss your next broadcast — write anytime',
       pdfLink: null as { label: string; href: string } | null,
     },
   },
