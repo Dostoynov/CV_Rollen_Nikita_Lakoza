@@ -258,7 +258,7 @@ const en = {
         },
         {
           href: 'https://fissure.pro',
-          src: '/logos/fissure.png',
+          src: '/logos/fissure.svg',
           alt: 'FISSURE.pro logo',
         },
       ],

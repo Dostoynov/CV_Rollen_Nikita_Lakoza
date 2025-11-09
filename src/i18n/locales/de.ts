@@ -259,7 +259,7 @@ const de: Translation = {
         },
         {
           href: 'https://fissure.pro',
-          src: '/logos/fissure.png',
+          src: '/logos/fissure.svg',
           alt: 'Logo von FISSURE.pro',
         },
       ],
