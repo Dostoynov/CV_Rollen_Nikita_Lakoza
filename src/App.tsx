@@ -2,6 +2,7 @@ import './App.css'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
 import { ThemeSwitcher } from './components/ThemeSwitcher'
 import { Section } from './components/Section'
+import { PortfolioCarousel } from './components/PortfolioCarousel'
 import { useI18n } from './i18n'
 
 function App() {
@@ -10,13 +11,14 @@ function App() {
   const {
     metadata,
     contact,
-    about,
+    summary,
     experience,
-    tournaments,
-    contributions,
-    production,
+    events,
+    education,
+    skills,
     tools,
-    training,
+    portfolio,
+    logos,
     links,
     shortVersion,
     footer,
@@ -50,16 +52,14 @@ function App() {
                 <h1 className="page-hero__title" id="cv-title">
                   {metadata.name}
                 </h1>
-                {metadata.details.length > 0 && (
-                  <ul className="page-hero__details" aria-label={metadata.detailsLabel}>
-                    {metadata.details.map((detail) => (
-                      <li key={detail.label}>
-                        <span className="page-hero__details-label">{detail.label}</span>
-                        <span>{detail.value}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <ul className="page-hero__details" aria-label={metadata.detailsLabel}>
+                  {metadata.details.map((detail) => (
+                    <li key={detail.label}>
+                      <span className="page-hero__details-label">{detail.label}</span>
+                      <span>{detail.value}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <aside className="page-hero__contacts" aria-labelledby="contact-title">
@@ -90,33 +90,70 @@ function App() {
           </div>
         </header>
 
-        <main className="page-content" id="main-content">
-          <Section id="about" title={about.title} icon="person">
-            <div className="section-text">
-              {about.intro.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="feature-grid">
-              <div className="feature-grid__main">
-                <h3 className="section-subtitle">{about.responsibilitiesTitle}</h3>
-                <ul className="checklist">
-                  {about.responsibilities.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <aside className="feature-highlight">
-                <span className="feature-highlight__icon material-symbols-rounded" aria-hidden="true">
-                  stars
+        {summary.tldr ? (
+          <section className="tldr" aria-labelledby="tldr-title">
+            <div className="tldr__inner">
+              <header className="tldr__header">
+                <span className="tldr__icon material-symbols-rounded" aria-hidden="true">
+                  bolt
                 </span>
-                <p>{about.highlight}</p>
-              </aside>
+                <h2 className="tldr__title" id="tldr-title">
+                  {summary.tldr.title}
+                </h2>
+              </header>
+              <ul className="tldr__list">
+                {summary.tldr.items.map((item) => (
+                  <li key={item.title} className="tldr__item">
+                    <h3 className="tldr__item-title">{item.title}</h3>
+                    <p className="tldr__item-copy">{item.description}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="section-note">{about.locationNote}</p>
-          </Section>
+          </section>
+        ) : null}
 
-          <Section id="experience" title={experience.title} icon="stadia_controller">
+        <main className="page-content" id="main-content">
+          <Section id="summary" title={summary.title} icon="auto_stories">
+            <div className="summary-layout">
+              <div className="summary-layout__intro-block">
+                <p className="summary-layout__intro">{summary.description}</p>
+                {summary.note ? <p className="section-note">{summary.note}</p> : null}
+              </div>
+              {summary.about ? (
+                <article className="summary-about" aria-labelledby="summary-about-title">
+                  <header className="summary-about__header">
+                    <span className="summary-about__icon" aria-hidden="true">
+                      ★
+                    </span>
+                    <h3 className="summary-about__title" id="summary-about-title">
+                      {summary.about.title}
+                    </h3>
+                  </header>
+                  <div className="summary-about__body">
+                    {summary.about.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                  {summary.about.list && summary.about.list.length > 0 ? (
+                    <div className="summary-about__list">
+                      {summary.about.listTitle ? (
+                        <h4 className="summary-about__list-title">{summary.about.listTitle}</h4>
+                      ) : null}
+                      <ul className="checklist">
+                        {summary.about.list.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  <p className="summary-about__highlight">{summary.about.highlight}</p>
+                  {summary.about.note ? <p className="summary-about__note">{summary.about.note}</p> : null}
+                </article>
+              ) : null}
+            </div>
+          </Section>
+          <Section id="experience" title={experience.title} icon="work">
             <div className="experience-list">
               {experience.items.map((item) => (
                 <article key={`${item.company}-${item.role}`} className="experience-card">
@@ -125,106 +162,186 @@ function App() {
                     <h3 className="experience-card__title">{item.role}</h3>
                     <p className="experience-card__meta">
                       <span>{item.period}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{item.format}</span>
+                      <span aria-hidden="true"> · </span>
+                      <span>{item.location}</span>
                     </p>
                   </header>
-                  <h4 className="experience-card__subtitle">{item.responsibilitiesTitle}</h4>
+                  <p className="experience-card__description">{item.description}</p>
                   <ul className="experience-card__achievements">
-                    {item.responsibilities.map((responsibility) => (
-                      <li key={responsibility}>{responsibility}</li>
+                    {item.achievements.map((achievement) => (
+                      <li key={achievement}>
+                        <span className="experience-card__marker material-symbols-rounded" aria-hidden="true">
+                          verified
+                        </span>
+                        <span>{achievement}</span>
+                      </li>
                     ))}
                   </ul>
                 </article>
               ))}
             </div>
           </Section>
-
-          <Section id="tournaments" title={tournaments.title} icon="emoji_events">
-            <p className="section-intro">{tournaments.intro}</p>
-            <div className="tournament-grid">
-              {tournaments.categories.map((category) => (
-                <section key={category.title} className="tournament-card" aria-label={category.title}>
-                  <h3 className="section-subtitle">{category.title}</h3>
-                  <ul className="tournament-list">
-                    {category.items.map((event) => (
-                      <li key={event}>{event}</li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
-          </Section>
-
-          <Section id="contributions" title={contributions.title} icon="hub">
-            <ul className="checklist checklist--dense">
-              {contributions.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section id="production" title={production.title} icon="precision_manufacturing">
-            <p className="section-intro">{production.intro}</p>
-            <ul className="bullet-list">
-              {production.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="section-note">{production.closing}</p>
-          </Section>
-
-          <Section id="tools" title={tools.title} icon="construction">
-            <div className="tool-grid">
-              {tools.groups.map((group) => (
-                <section key={group.title} className="tool-grid__group" aria-label={group.title}>
-                  <h3 className="tool-grid__title">{group.title}</h3>
-                  <ul className="tool-grid__list">
-                    {group.items.map((tool) => (
-                      <li key={tool}>{tool}</li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
-          </Section>
-
-          <Section id="training" title={training.title} icon="diversity_3">
-            <p className="section-intro">{training.intro}</p>
-            <ul className="checklist">
-              {training.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section id="links" title={links.title} icon="link">
-            <ul className="links-list">
-              {links.items.map((item) => (
-                <li key={item.value} className="links-list__item">
-                  <span className="links-list__label">{item.label}</span>
-                  <a
-                    href={item.href ?? item.value}
-                    className="links-list__link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.value}
-                  </a>
+          {events ? (
+            <Section id="events" title={events.title} icon="emoji_events">
+              {events.intro ? <p className="section-intro">{events.intro}</p> : null}
+              {events.items ? (
+                <div className="event-grid">
+                  {events.items.map((event) => (
+                    <article key={`${event.title}-${event.period}`} className="event-card">
+                      <header className="event-card__header">
+                        <p className="event-card__title">{event.title}</p>
+                        <p className="event-card__meta">
+                          <span>{event.role}</span>
+                          <span aria-hidden="true"> · </span>
+                          <span>{event.period}</span>
+                        </p>
+                        <p className="event-card__location">{event.location}</p>
+                      </header>
+                      <p className="event-card__description">{event.description}</p>
+                      {event.link ? (
+                        <a
+                          className="event-card__link"
+                          href={event.link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span>{event.link.label}</span>
+                          <span className="material-symbols-rounded" aria-hidden="true">
+                            north_east
+                          </span>
+                        </a>
+                      ) : null}
+                    </article>
+                  ))}
+                </div>
+              ) : null}
+              {events.categories ? (
+                <div className="tournament-grid">
+                  {events.categories.map((category) => (
+                    <section key={category.title} className="tournament-card" aria-label={category.title}>
+                      <h3 className="section-subtitle">{category.title}</h3>
+                      <ul className="tournament-list">
+                        {category.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </section>
+                  ))}
+                </div>
+              ) : null}
+            </Section>
+          ) : null}
+          <Section id="education" title={education.title} icon="school">
+            <ul className="education-list">
+              {education.items.map((item) => (
+                <li key={`${item.institution}-${item.period}`} className="education-list__item">
+                  <div className="education-list__heading">
+                    <h3 className="education-list__degree">{item.degree}</h3>
+                    <p className="education-list__institution">{item.institution}</p>
+                  </div>
+                  <p className="education-list__meta">
+                    <span>{item.period}</span>
+                    <span aria-hidden="true"> · </span>
+                    <span>{item.location}</span>
+                  </p>
+                  {item.description ? (
+                    <p className="education-list__description">{item.description}</p>
+                  ) : null}
                 </li>
               ))}
             </ul>
           </Section>
-
-          <Section id="short-version" title={shortVersion.title} icon="summarize">
-            <div className="short-version">
-              <p>{shortVersion.description}</p>
+          <Section id="skills" title={skills.title} icon="psychology">
+            <div className="skills-grid">
+              {skills.groups.map((group) => (
+                <section key={group.title} aria-label={group.title} className="skills-grid__group">
+                  <h3 className="skills-grid__title">{group.title}</h3>
+                  {group.description ? <p className="skills-grid__description">{group.description}</p> : null}
+                  <ul className="skills-grid__list">
+                    {group.items.map((skill) => (
+                      <li key={skill}>{skill}</li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
             </div>
+            {skills.note ? <p className="section-note">{skills.note}</p> : null}
           </Section>
+          {tools ? (
+            <Section id="tools" title={tools.title} icon="build">
+              <div className="skills-grid">
+                {tools.groups.map((group) => (
+                  <section key={group.title} aria-label={group.title} className="skills-grid__group">
+                    <h3 className="skills-grid__title">{group.title}</h3>
+                    <ul className="skills-grid__list skills-grid__list--tools">
+                      {group.items.map((tool) => (
+                        <li key={tool}>{tool}</li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </Section>
+          ) : null}
+          {portfolio ? (
+            <Section id="portfolio" title={portfolio.title} icon="view_carousel">
+              <PortfolioCarousel items={portfolio.items} toggle={portfolio.toggle} />
+            </Section>
+          ) : null}
+          {logos ? (
+            <Section id="logos" title={logos.title} icon="diversity_2">
+              <ul className="logo-grid">
+                {logos.items.map((logo) => (
+                  <li key={logo.href} className="logo-grid__item">
+                    <a
+                      className="logo-grid__link"
+                      href={logo.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img className="logo-grid__image" src={logo.src} alt={logo.alt} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          ) : null}
+          {links ? (
+            <Section id="links" title={links.title} icon="link">
+              <ul className="links-list">
+                {links.items.map((item) => (
+                  <li key={item.label} className="links-list__item">
+                    <span className="links-list__label">{item.label}</span>
+                    <a className="links-list__link" href={item.href} target="_blank" rel="noopener noreferrer">
+                      {item.value}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          ) : null}
+          {shortVersion ? (
+            <Section id="short-version" title={shortVersion.title} icon="summarize">
+              <div className="short-version">{shortVersion.description}</div>
+            </Section>
+          ) : null}
         </main>
 
         <footer className="site-footer">
           <p>{footer.note}</p>
+          {footer.pdfLink && (
+            <a
+              className="site-footer__pdf-link"
+              href={footer.pdfLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="material-symbols-rounded" aria-hidden="true">
+                picture_as_pdf
+              </span>
+              <span>{footer.pdfLink.label}</span>
+            </a>
+          )}
         </footer>
       </div>
     </div>
