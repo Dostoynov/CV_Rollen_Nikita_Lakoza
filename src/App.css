@@ -61,27 +61,59 @@
 }
 
 .language-switcher {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 2.25rem;
   height: 2.25rem;
   border-radius: var(--card-border-radius);
   border: 1px solid color-mix(in srgb, var(--border-strong) 80%, transparent);
   background: transparent;
   color: var(--text-primary);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.language-switcher__select {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
   font-weight: 600;
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  letter-spacing: 0.04em;
+  padding: 0 2.25rem 0 0.75rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.language-switcher__select:focus,
+.language-switcher__select:focus-visible {
+  outline: none;
 }
 
 .language-switcher:hover,
-.language-switcher:focus-visible {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 18%, transparent);
-  outline: none;
+.language-switcher:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: 0 6px 14px -8px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.language-switcher:hover .language-switcher__select,
+.language-switcher:focus-within .language-switcher__select {
+  color: inherit;
+}
+
+.language-switcher:hover .language-switcher__icon,
+.language-switcher:focus-within .language-switcher__icon {
+  color: inherit;
+}
+
+.language-switcher__icon {
+  position: absolute;
+  right: 0.5rem;
+  pointer-events: none;
+  font-size: 1.05rem;
+  color: inherit;
 }
 
 .theme-switcher {
