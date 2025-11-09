@@ -90,24 +90,31 @@ function App() {
                 {contact.title}
               </h2>
               <ul className="contact-list">
-                {contact.items.map((item) => (
-                  <li key={item.label} className="contact-list__item">
-                    <span className="contact-list__icon material-symbols-rounded" aria-hidden="true">
-                      {item.icon}
-                    </span>
-                    <div className="contact-list__content">
-                      <span className="contact-list__label">{item.label}</span>
+                {contact.items.map((item) => {
+                  const isEmail = item.href.startsWith('mailto:')
+
+                  return (
+                    <li key={item.label} className="contact-list__item">
                       <a
-                        className="contact-list__link"
+                        className="contact-card"
                         href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={isEmail ? undefined : '_blank'}
+                        rel={isEmail ? undefined : 'noopener noreferrer'}
                       >
-                        {item.value}
+                        <span className="contact-card__icon material-symbols-rounded" aria-hidden="true">
+                          {item.icon}
+                        </span>
+                        <div className="contact-card__content">
+                          <span className="contact-card__label">{item.label}</span>
+                          <span className="contact-card__value">{item.value}</span>
+                        </div>
+                        <span className="contact-card__arrow material-symbols-rounded" aria-hidden="true">
+                          north_east
+                        </span>
                       </a>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  )
+                })}
               </ul>
             </aside>
           </div>
@@ -249,9 +256,50 @@ function App() {
                     <section key={category.title} className="tournament-card" aria-label={category.title}>
                       <h3 className="section-subtitle">{category.title}</h3>
                       <ul className="tournament-list">
-                        {category.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
+                        {category.tournaments.map((tournament) => {
+                          const [primaryLink, ...extraLinks] = tournament.links
+
+                          if (!primaryLink) {
+                            return null
+                          }
+
+                          return (
+                            <li key={tournament.name} className="tournament-list__item">
+                              <a
+                                className="tournament-link"
+                                href={primaryLink.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <span className="tournament-link__name">{tournament.name}</span>
+                                <span className="tournament-link__cta">
+                                  {primaryLink.label ?? 'Open link'}
+                                  <span className="material-symbols-rounded" aria-hidden="true">
+                                    north_east
+                                  </span>
+                                </span>
+                              </a>
+                              {extraLinks.length ? (
+                                <div className="tournament-link__extras" aria-label={`${tournament.name} additional links`}>
+                                  {extraLinks.map((link) => (
+                                    <a
+                                      key={`${tournament.name}-${link.href}`}
+                                      className="tournament-link__chip"
+                                      href={link.href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <span>{link.label ?? 'More info'}</span>
+                                      <span className="material-symbols-rounded" aria-hidden="true">
+                                        north_east
+                                      </span>
+                                    </a>
+                                  ))}
+                                </div>
+                              ) : null}
+                            </li>
+                          )
+                        })}
                       </ul>
                     </section>
                   ))}

@@ -355,23 +355,31 @@
 }
 
 .contact-list__item {
+  list-style: none;
+}
+
+.contact-card {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, var(--border-strong) 60%, transparent);
   background: var(--surface);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: var(--text-primary);
 }
 
-.contact-list__item:hover,
-.contact-list__item:focus-within {
+.contact-card:hover,
+.contact-card:focus-visible {
   border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--surface) 82%, var(--accent) 18%);
+  transform: translateY(-2px);
 }
 
-.contact-list__icon {
+.contact-card__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -379,12 +387,12 @@
   color: var(--accent);
 }
 
-.contact-list__content {
+.contact-card__content {
   display: grid;
   gap: 0.35rem;
 }
 
-.contact-list__label {
+.contact-card__label {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -392,32 +400,25 @@
   font-weight: 600;
 }
 
-.contact-list__link {
+.contact-card__value {
   font-weight: 600;
   font-size: 1rem;
   color: var(--text-primary);
+}
+
+.contact-card__arrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  transition: color 0.2s ease;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: color-mix(in srgb, var(--text-muted) 85%, transparent);
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.contact-list__link::after {
-  content: '\2197';
-  font-size: 0.85rem;
-  opacity: 0.65;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.contact-list__link:hover,
-.contact-list__link:focus-visible {
+.contact-card:hover .contact-card__arrow,
+.contact-card:focus-visible .contact-card__arrow {
   color: var(--accent);
-}
-
-.contact-list__link:hover::after,
-.contact-list__link:focus-visible::after {
   transform: translate(2px, -2px);
-  opacity: 1;
 }
 
 .section-title {
@@ -917,11 +918,96 @@
 
 .tournament-list {
   margin: 0;
-  padding-left: 1.25rem;
+  padding: 0;
+  list-style: none;
   display: grid;
-  gap: 0.5rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
+  gap: 0.75rem;
+}
+
+.tournament-list__item {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.tournament-link {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--border-strong) 60%, transparent);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tournament-link__name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tournament-link__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.tournament-link__extras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tournament-link__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.tournament-link__chip .material-symbols-rounded {
+  font-size: 1rem;
+}
+
+.tournament-link:hover,
+.tournament-link:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--surface) 85%, var(--accent) 15%);
+  transform: translateY(-2px);
+}
+
+.tournament-link:hover .tournament-link__cta,
+.tournament-link:focus-visible .tournament-link__cta {
+  color: var(--accent);
+}
+
+.tournament-link:hover .tournament-link__cta .material-symbols-rounded,
+.tournament-link:focus-visible .tournament-link__cta .material-symbols-rounded {
+  transform: translate(2px, -2px);
+}
+
+.tournament-link__cta .material-symbols-rounded {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.tournament-link__chip:hover,
+.tournament-link__chip:focus-visible {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: color-mix(in srgb, var(--accent) 85%, var(--accent-contrast));
+  transform: translateY(-1px);
 }
 
 .portfolio-carousel {
