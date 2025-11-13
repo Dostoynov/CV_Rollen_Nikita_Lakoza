@@ -231,6 +231,20 @@ const de: Translation = {
       },
       items: [
         {
+          title: 'Top observer mindgame move',
+          description: 'Did you saw this smoke fade?',
+          mediaType: 'video',
+          src: 'https://drive.usercontent.google.com/download?id=10SNqs5bLyPQQGlBeYmuoPrwlIA0r7OfO&export=download',
+          sourceType: 'video/mp4',
+          orientation: 'portrait',
+          fallback: {
+            mediaType: 'iframe',
+            src: 'https://drive.google.com/file/d/10SNqs5bLyPQQGlBeYmuoPrwlIA0r7OfO/preview',
+            allow: 'autoplay; fullscreen',
+            allowFullScreen: true,
+          },
+        },
+        {
           title: 'Das Team, das die Bühne erhellt',
           description: 'Die besten Emotionen nach einem Turnier',
           mediaType: 'image',
@@ -261,6 +275,7 @@ const de: Translation = {
           href: 'https://fissure.pro',
           src: '/logos/fissure.svg',
           alt: 'Logo von FISSURE.pro',
+          id: 'fissure',
         },
       ],
     },

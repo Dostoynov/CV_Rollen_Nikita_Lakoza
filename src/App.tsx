@@ -373,7 +373,12 @@ function App() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img className="logo-grid__image" src={logo.src} alt={logo.alt} />
+                      <img
+                        className="logo-grid__image"
+                        src={logo.src}
+                        alt={logo.alt}
+                        data-logo={logo.id}
+                      />
                     </a>
                   </li>
                 ))}
